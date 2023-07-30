@@ -1,0 +1,90 @@
+#                                       1 Задача
+# Напишите программу, которая вычисляет площадь круга и длину окружности по введённому диаметру. 
+# Диаметр не превышает 1000 у.е. Точность вычислений должна составлять не менее 42 знаков после запятой.
+
+
+import math 
+class circle():
+    def __init__(self, radius):
+        self.radius = radius
+    def area(self):
+        return math.pi * (self.radius**2)
+    def perimeter(self):
+        return 2 * math.pi * self.radius
+
+ 
+# r = int(input("Введите радиус круга: "))
+# obj = circle(r)
+# print("Площадь круга:", round(obj.area(), 2))
+# print("Длина окружности:", round(obj.perimeter(), 2))
+
+#----------------------------------------------------------------------------------------------------------------
+#                                       2 Задача
+# Напишите программу, которая получает целое число и возвращает его шестнадцатеричное строковое представление. 
+# Функцию hex используйте для проверки своего результата.
+
+
+
+def hex_number(number: int, mod: int = 16) -> str:
+    result = ''
+    while number != 0:
+        temp = number % mod if (number % mod) < 10 else chr(number % mod + 87)
+        result = str(temp) + result
+        number //= mod
+    result = '0x' + result
+    return result
+
+
+num = int(input('Введите число: '))
+print(f'hex of number = {hex_number(num)} test with hex() = {hex(num)}')
+#----------------------------------------------------------------------------------------------------------------
+#                                       3 Задача
+# Напишите программу, которая принимает две строки вида “a/b” - дробь с числителем и знаменателем.
+# Программа должна возвращать сумму и произведение* дробей. Для проверки своего кода используйте модуль fractions.
+
+
+first_number = input("")
+second_number = input("")
+index = 0
+a_1 = ""
+a_2 = ""
+b_1 = ""
+b_2 = ""
+
+while index < len(first_number):
+    a_1 += first_number[index]
+    index += 1
+    if first_number[index] == "/":
+        index += 1
+        while index < len(first_number):
+            a_2 += first_number[index]
+            index += 1
+index = 0
+
+while index < len(second_number):
+    b_1 += second_number[index]
+    index += 1
+    if second_number[index] == "/":
+        index += 1
+        while index < len(second_number):
+            b_2 += second_number[index]
+            index += 1
+
+print("Произведение дробей равно :", int(a_1)*int(b_2), "/", int(a_2)*int(b_1))
+
+a1 = ""
+b1 = ""
+a2 = ""
+b2 = ""
+if a_2 != b_2:
+    a1 = int(a_1)*int(b_2)
+    b1 = int(b_1)*int(a_2)
+    a2 = int(a_2)*int(b_2)
+    b2 = int(b_2)*int(a_2)
+    print("Сумма дробей равна :", a1 + b1, "/", a2)
+
+if a_2 == b_2:
+    if int(a_1) + int(b_1) == int(a_2):
+        print("сумма дробей равна единице")
+    else:
+        print("сумма дробей равна :", int(a_1) + int(b_1), "/", int(a_2))
